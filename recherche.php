@@ -40,6 +40,8 @@
             <input type="submit" name="search" value="search">
         </div>
     </form>
+
+    <!-- users table -->
     <table class="table table-success table-striped w-50 m-5">
         <thead>
             <tr>
@@ -52,7 +54,7 @@
         </thead>
         <tbody>
             <!-- show data in the table -->
-            <?php while ($result = $users->fetch()): ?>
+            <?php while ($result = $exect->fetch()): ?>
             <tr>
                 <td><?=$result['id_client'] ?></td>
             

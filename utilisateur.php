@@ -1,4 +1,5 @@
 <?php
+    session_start();
     require_once "connexion.php";
 
     $requete = "SELECT * FROM client";
@@ -47,7 +48,14 @@
         </div>
     </nav>
 
-
+    <!-- alert d'un message -->
+    <?php
+        if(isset($_SESSION['alert'])){
+            echo "<div class='alert alert-success text-center' role='alert'>
+            ".$_SESSION['alert']."
+          </div>";
+        }
+     ?>
     
     <div class="card text-center w-50 m-5 bg-danger">
         <div class="card-header">

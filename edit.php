@@ -1,4 +1,6 @@
 <?php
+    session_reset();
+    
     require_once "connexion.php";
 
     if(isset($_GET['id'])){
@@ -23,8 +25,11 @@
 
                         $result = $pdo->query($requete);
                         $result->fetch();
+
                         
                             if ($result) {
+
+                                $_SESSION['alert'] = "success update";
                                 // en tete
                                 header("location:utilisateur.php");
                             }
