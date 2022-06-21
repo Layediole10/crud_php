@@ -1,6 +1,6 @@
 <?php
     session_reset();
-    
+   
     require_once "connexion.php";
 
     if(isset($_GET['id'])){
