@@ -1,34 +1,4 @@
-<?php
-    session_start();
-   
-    require_once "connexion.php";
 
-    $requete = "SELECT * FROM client";
-    $exect = $pdo->query($requete);
-    $result = $exect->fetch();
-
-    if(isset($_GET['id'])){
-
-        $req = "DELETE FROM client WHERE id_client = $_GET[id]";
-        $delete = $pdo->query($req);
-        header("location:utilisateur.php");
-    }
-
-    // search part
-    // rechercher tous les utilisateurs
-    $users = $pdo->query("SELECT * FROM client");
-    if (isset($_POST['search']) && !empty($_POST['check'])) {
-        $recherche = $_POST['check'];
-        // recherche d'un utilisateur
-        $req = "SELECT * FROM `client` WHERE `nom` LIKE '%".$recherche."%' ORDER BY id_client DESC";
-        $users = $pdo->query($req);
-        // $result = $users->fetch();
-
-        // echo "<pre>";
-        // print_r($_GET);
-        // echo "</pre>";
-    }
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -40,24 +10,16 @@
     <title>utilisateurs</title>
 </head>
 <body>
+
     <!-- nav bar -->
     <nav class="navbar navbar-dark bg-dark">
         <p class="text-light fs-3">Users</p>
         <div >
-            <a href="index.php" class="text-light text-decoration-none " >Add User</a>
-            <a href="utilisateur.php" class="text-light m-3 text-decoration-none" >Users</a>
+            <a href="./formulaire.php" class="text-light text-decoration-none " >Add User</a>
+            <a href="../../Controllers/search.php" class="text-light m-3 text-decoration-none" >Users</a>
         </div>
     </nav>
 
-    <!-- alert d'un message -->
-    <?php
-        if(isset($_SESSION['alert'])){
-            echo "<div class='alert alert-success text-center' role='alert'>
-            ".$_SESSION['alert']."
-          </div>";
-        }
-     ?>
-    
     <div class="card text-center w-50 m-5 bg-danger">
         <div class="card-header">
             <h1>USERS</h1>
@@ -72,9 +34,11 @@
         </div>
     </form>
 
-
+    
     <!-- search users on table -->
     <?php
+    require_once("../Controllers/search.php");
+    require_once("../Controllers/update.php");
         if ($users->rowCount() > 0) {
             
 
@@ -106,7 +70,7 @@
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                         </a>
 
-                                        <a class="mx-3" href="edit.php?id=<?=$result['id_client'] ?>">
+                                        <a class="mx-3" href="/Views/edit.php?id=<?=$result['id_client'] ?>">
                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                         </a>
                                 

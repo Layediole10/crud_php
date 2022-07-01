@@ -1,10 +1,6 @@
 <?php 
+    require_once("../Modeles/connexion.php");
     
-    require_once "connexion.php";
-    // echo "<pre>";
-    // print_r($_POST);
-    // echo "</pre>";
-    // recuperation des données
     $first = $_POST['first_name'];
     $last = $_POST['last_name'];
     $email = $_POST['email'];
@@ -23,8 +19,10 @@
             $res = $pdo->query($requete);
             $res->fetchAll();
         // en tete
-        header("location:utilisateur.php");
+        header("location:../Views/utilisateur.php");
+        // require_once("./search.php");
         }
     }
-  
+
 ?>
+  
